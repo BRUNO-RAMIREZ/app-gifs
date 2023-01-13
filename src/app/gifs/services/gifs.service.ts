@@ -10,6 +10,8 @@ export class GifsService {
 
   private _historial: string[] = [];
 
+  public resultados: any[] = [];
+
   get historial() {
     return [...this._historial];
   }
@@ -24,8 +26,11 @@ export class GifsService {
     }
     this.http
       .get(
-        'https://api.giphy.com/v1/gifs/search?api_key=9JXEpXIn92Eqj215o9NGzPCBE9Kwf9TA&q=PATRICIO&limit=10'
+        `https://api.giphy.com/v1/gifs/search?api_key=9JXEpXIn92Eqj215o9NGzPCBE9Kwf9TA&q=${query}&limit=10`
       )
-      .subscribe((res: any) => console.log(res.data));
+      .subscribe((res: any) => {
+        console.log(res.data);
+        this.resultados = res.data;
+      });
   }
 }
